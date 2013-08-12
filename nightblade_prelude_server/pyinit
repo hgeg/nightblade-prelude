@@ -1,0 +1,26 @@
+from __future__ import with_statement
+from prelude.models import *
+from prelude.data import *
+from prelude.helpers import *
+import os
+
+#create test user
+u = Author.objects.create(username='Hgeg',password='sokoban')
+u.save()
+
+#create places
+places = []
+for e in PLACES:
+  p = Place.objects.create(name=e,uid=create_uid())
+  places += [p]
+#connect places with gateways
+for e in GATEWAYS:
+  places[e[0]]
+
+'''
+#set apache deployment 
+with open('./wsgi/httpd.conf-add','r+') as f:
+ o = f.read().replace('<PROJECT_DIR>',os.getcwd())
+ f.write(o)
+'''
+exit()
