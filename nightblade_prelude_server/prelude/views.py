@@ -3,7 +3,7 @@ from functools import wraps
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
 from prelude.models import *
-import json,oauth2,time,helpers,hashlib
+import json,time,helpers,hashlib
 
 API_TOKENS = {'debfc0f39c6cea44e540':'39029904c984344b2518e9abd3be6c1ab76a99ac'}
 
