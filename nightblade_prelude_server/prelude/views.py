@@ -1,7 +1,7 @@
 # Create your views here.
 from functools import wraps
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from prelude.models import *
 import json,time,helpers,hashlib
 
@@ -73,17 +73,7 @@ def authenticate(request):
 
 @csrf_exempt
 def main(request):
-  v = validate_request(request,True)
-  if v==0:
-    v = validate_authentication(request)
-    if v[1]: return v[0]
-    return jsonResponse({'error':False,'data':{'msg':'Hello authenticated user'}},200)
-  elif v==-1:
-    return jsonResponse({'error':True,'data':{'msg':'All requests must be POST.'}},403)
-  elif v==-2:
-    return jsonResponse({'error':True,'data':{'msg':'Invalid access token.'}},403)
-  else:
-    return jsonResponse({'error':True,'data':{'msg':'Invalid signature.'}},403)
+  return jsonResponse({'error':False,'data':{'msg':'Welcome to Nightblade: Prelude API.'}},200)
 
 @csrf_exempt
 def character(request,query):
@@ -118,6 +108,9 @@ def character(request,query):
     return jsonResponse({'error':True,'data':{'msg':'Invalid access token.'}},403)
   else:
     return jsonResponse({'error':True,'data':{'msg':'Invalid signature.'}},403)
+
+def redirect(request):
+  return HttpResponseRedirect('/prelude/api/v0_2/')
 
 @csrf_exempt
 def location(request,query): return NotImplemented

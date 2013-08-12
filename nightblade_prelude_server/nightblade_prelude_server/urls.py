@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^prelude/api/v0_2/character:(?P<query>.*)/$', 'prelude.views.character'),
     url(r'^prelude/api/v0_2/location:(?P<query>.*)/$', 'prelude.views.location'),
     url(r'^prelude/api/v0_2/action:(?P<query>.*)/$', 'prelude.views.action'),
+    url(r'^prelude/.*$', 'prelude.views.redirect'),
 
     #url(r'^.*$', 'prelude.views.main'),
 )
